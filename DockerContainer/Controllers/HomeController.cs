@@ -21,10 +21,14 @@ namespace DockerContainer.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Login()
         {
-            ViewData["Message"] = "Your application description page.";
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult Login(LoginModel model)
+        {
             return View();
         }
 

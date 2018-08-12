@@ -14,11 +14,16 @@ namespace DockerContainer.Models
 
         [Required]
         [Display(Name = "Last name")]
-        public string LasttName { get; set; }
+        public string LastName { get; set; }
 
         [Required]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        [Required]
+        [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string Email { get; set; }
 
         [Compare("Password", ErrorMessage = "Password doesn't match.")]
         [Display(Name = "Confirm Password")]
