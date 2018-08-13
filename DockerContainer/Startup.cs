@@ -22,6 +22,9 @@ namespace DockerContainer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            var host = Configuration["DBHOST"] ?? "localhost";
+            var port = Configuration["DBPORT"] ?? "3306";
+            var password= Configuration["DBPASSWORD"] ?? "secret";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
