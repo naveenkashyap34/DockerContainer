@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using DockerContainer.Data;
 
 namespace DockerContainer
 {
@@ -22,9 +24,12 @@ namespace DockerContainer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            var host = Configuration["DBHOST"] ?? "localhost";
-            var port = Configuration["DBPORT"] ?? "3306";
-            var password= Configuration["DBPASSWORD"] ?? "secret";
+            var host = Configuration["DBHOST"] ?? "DESKTOP-K9SUDVU\\SQLEXPRESS";
+            var database = Configuration["DB"] ?? "dbUAT";
+            var password= Configuration["DBPASSWORD"] ?? "naveen@11";
+            var userid = Configuration["DBUSERID"] ?? "sa";
+            var connection = @"Server=" + host + ";Database=" + database + ";user id=" + userid + "; Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<dbUATContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

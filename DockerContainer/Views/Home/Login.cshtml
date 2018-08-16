@@ -3,8 +3,14 @@
 }
 @model DockerContainer.Models.LoginModel
 <h2>Login</h2>
-@using (Html.BeginForm("Register", "Home"))
+@using (Html.BeginForm("Login", "Home"))
 {
+    @if (ViewBag.Message != null)
+    {
+        <div class="col-md-12 text-center alert @ViewBag.Class">
+            @ViewBag.Message
+        </div>
+    }
     <div class="col-md-12">
         <div class="col-md-4">
             <div class="form-group">
@@ -16,7 +22,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label>Password</label>
-                @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
                 <div class="text-danger">@Html.ValidationMessageFor(x => x.Password)</div>
             </div>
         </div>
